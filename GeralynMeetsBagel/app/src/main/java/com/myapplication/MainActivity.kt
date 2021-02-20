@@ -1,6 +1,7 @@
 package com.myapplication
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,10 +10,11 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val REQ_CODE = 1
+    private val REQ_CODE = 1234
     private lateinit var name: String
     private lateinit var age: String
     private lateinit var interest: String
+    private lateinit var imageBitmapString: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
