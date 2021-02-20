@@ -15,4 +15,121 @@
         android:text="Dating Profiles"
         android:layout_margin="20sp"
         android:textSize="30sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click on a profile to view more details and rate them.."
+        android:textSize="15sp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:layout_marginTop="50sp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card1"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:layout_gravity="left"
+            android:layout_marginRight="20sp"
+            android:onClick="getProfileDetails">
+
+            <ImageView
+                android:id="@+id/date1ImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="100sp"
+                android:src="@drawable/date1" />
+
+            <TextView
+                android:id="@+id/date1TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="55sp"
+                android:text="User 1"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card2"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20sp"
+            android:onClick="getProfileDetails">
+
+            <ImageView
+                android:id="@+id/date2ImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="100sp"
+                android:src="@drawable/date2" />
+
+            <TextView
+                android:id="@+id/date2TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="55sp"
+                android:text="User 2"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:layout_marginTop="30sp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card3"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:layout_gravity="left"
+            android:layout_marginRight="20sp"
+            android:onClick="getProfileDetails">
+
+            <ImageView
+                android:id="@+id/date3ImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="100sp"
+                android:src="@drawable/date3" />
+
+            <TextView
+                android:id="@+id/date3TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="55sp"
+                android:text="User 3"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card4"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20sp"
+            android:onClick="getProfileDetails">
+
+            <ImageView
+                android:id="@+id/date4ImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="100sp"
+                android:src="@drawable/date4" />
+
+            <TextView
+                android:id="@+id/date4TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="55sp"
+                android:text="User 2"
+                android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
 </LinearLayout>
