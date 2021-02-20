@@ -76,6 +76,7 @@ class Profile : AppCompatActivity() {
         }
     }
 
+    // TODO: Save image to file.
 //    private fun saveImageToFile(imageView: ImageView) {
 //        var file = wrapper.getDir("images", Context.MODE_PRIVATE)
 //
