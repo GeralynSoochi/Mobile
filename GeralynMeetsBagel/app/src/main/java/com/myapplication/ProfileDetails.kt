@@ -1,23 +1,19 @@
 package com.myapplication
 
 import android.content.Intent
-import android.media.Rating
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.RatingBar
-import android.widget.Toast
 import com.myapplication.databinding.ActivityProfileDetailsBinding
-import java.io.PrintStream
 import java.util.*
 
 class ProfileDetails : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private lateinit var binding: ActivityProfileDetailsBinding
     private val REQ_CODE = 3
     private lateinit var dateUser: String
-    private lateinit var dateDrawable: String
     private lateinit var dateDetails: String
     private lateinit var ratingBar: RatingBar
+    private lateinit var filename: String
     private var userRating = 0.toFloat()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,52 +22,55 @@ class ProfileDetails : AppCompatActivity(), RatingBar.OnRatingBarChangeListener 
         setContentView(binding.root)
 
         ratingBar = binding.ratingBar
-        ratingBar.onRatingBarChangeListener = this
         dateUser = intent.getStringExtra("dateUser")
         dateDetails = intent.getStringExtra("dateDetails")
+        var dateResource = intent.getIntExtra("dateResource", 0)
+        filename = "" + dateResource + "_rating.txt"
 
-        if (!fileExist("user_profiles.txt") && dateUser != null && dateDetails != null) {
+        if (dateUser != null && dateDetails != null && dateResource != 0) {
             binding.userTv.text = dateUser
             binding.detailsTv.text = dateDetails
-        } else {
-            readFile()
-            binding.userTv.text = dateUser
-            binding.detailsTv.text = dateDetails
+            binding.imageView.setImageResource(dateResource)
+        }
+        if (fileExist(filename)) {
+            readFile(filename)
             ratingBar.rating = userRating
         }
+
+        ratingBar.onRatingBarChangeListener = this
     }
 
-    private fun readFile() {
-        val scan = Scanner(openFileInput("user_profiles.txt"))
+    private fun readFile(fname: String) {
+        val scan = Scanner(openFileInput(fname))
 
         while(scan.hasNextLine()) {
             val line = scan.nextLine()
             val pieces = line.split("\t")
-            // sift out the user.
-            if (pieces[0] == dateUser) {
-                dateUser = pieces[0]
-                dateDetails = pieces[1]
-                userRating = pieces[2].toFloat()
+            var fileUser = pieces[0]
+            if (fileUser == dateUser) {
+                userRating = pieces[1].toFloat()
             } else {
-                continue
+                userRating = 0F
             }
         }
+        scan.close()
     }
 
-    private fun fileExist(fname: String?): Boolean {
+    private fun fileExist(fname: String): Boolean {
         val file = baseContext.getFileStreamPath(fname)
         return file.exists()
     }
 
     override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
         userRating = ratingBar.rating
-        saveUserDetails()
+
+        val goBack = Intent()
+        goBack.putExtra("dateUser", dateUser)
+        goBack.putExtra("filename", filename)
+        goBack.putExtra("userRating", userRating)
+        setResult(RESULT_OK, goBack)
+        finish()
     }
 
-    private fun saveUserDetails() {
-        Toast.makeText(this@ProfileDetails, "User rating when saved is $userRating", Toast.LENGTH_SHORT).show()
-        val output = PrintStream(openFileOutput("user_profiles.txt", MODE_APPEND))
-        output.println(dateUser + "\t" + dateDetails + "\t" + userRating + "\t")
-        output.close()
-    }
+
 }
