@@ -28,28 +28,28 @@ class DatingProfiles : AppCompatActivity() {
     fun getProfileDetails(view: View) {
         when (view.id) {
             R.id.card1 -> {
-                dateUser = binding.date1TextView.toString()
+                dateUser = binding.date1TextView.text.toString()
                 dateDrawable = binding.date1ImageView.drawable
                 dateDetails = "A very ambitious woman. Loves to work 9am-5pm."
             }
             R.id.card2 -> {
-                dateUser = binding.date2TextView.toString()
+                dateUser = binding.date2TextView.text.toString()
                 dateDrawable = binding.date2ImageView.drawable
                 dateDetails = "Likes to smile alot. Favourite color is blue."
             }
             R.id.card3 -> {
-                dateUser = binding.date3TextView.toString()
+                dateUser = binding.date3TextView.text.toString()
                 dateDrawable = binding.date3ImageView.drawable
                 dateDetails = "Clothing Model. Loves Instagram."
             }
             R.id.card4 -> {
-                dateUser = binding.date4TextView.toString()
+                dateUser = binding.date4TextView.text.toString()
                 dateDrawable = binding.date4ImageView.drawable
                 dateDetails = "Geek, likes to program."
             }
         }
 
-        Toast.makeText(this, "$dateDrawable", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "$dateDrawable", Toast.LENGTH_SHORT).show()
 
         val detailsIt = Intent(this, ProfileDetails::class.java)
         // Need to figure out how to pass drawable into intent.
