@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="55sp"
-                android:text="User 2"
+                android:text="User 4"
                 android:textSize="16sp" />
         </androidx.cardview.widget.CardView>
 
