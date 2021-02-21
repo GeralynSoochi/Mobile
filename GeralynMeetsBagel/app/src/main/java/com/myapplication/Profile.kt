@@ -130,15 +130,4 @@ class Profile : AppCompatActivity() {
             finish()
         }
     }
-
-    //    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        outState.putInt("points", points)
-//    }
-
-//    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-//        super.onRestoreInstanceState(savedInstanceState)
-//        points = savedInstanceState.getInt("points")
-//        Log.i("points", "onRestoreInstance $points")
-//    }
 }
