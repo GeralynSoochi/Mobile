@@ -3,8 +3,8 @@ package com.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.RatingBar
 import android.widget.Toast
-import com.myapplication.databinding.ActivityDatingProfilesBinding
 import com.myapplication.databinding.ActivityProfileDetailsBinding
 
 class ProfileDetails : AppCompatActivity() {
@@ -18,6 +18,12 @@ class ProfileDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val ratingBar = binding.ratingBar
+        ratingBar.onRatingBarChangeListener = object : RatingBar.OnRatingBarChangeListener {
+            override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
+                Toast.makeText(this@ProfileDetails, "Given rating is: $p1", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
