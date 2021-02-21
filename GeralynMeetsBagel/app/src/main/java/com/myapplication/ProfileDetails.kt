@@ -7,7 +7,7 @@ import android.widget.RatingBar
 import android.widget.Toast
 import com.myapplication.databinding.ActivityProfileDetailsBinding
 
-class ProfileDetails : AppCompatActivity() {
+class ProfileDetails : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private lateinit var binding: ActivityProfileDetailsBinding
     private val REQ_CODE = 3
     private lateinit var dateUser: String
@@ -19,9 +19,12 @@ class ProfileDetails : AppCompatActivity() {
         binding = ActivityProfileDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val ratingBar = binding.ratingBar
-        ratingBar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { p0, p1, p2 ->
+        ratingBar.onRatingBarChangeListener = this
+
+    }
+
+    override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
             Toast.makeText(this@ProfileDetails, "Given rating is: $p1", Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
