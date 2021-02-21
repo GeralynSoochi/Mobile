@@ -20,22 +20,19 @@ class ProfileDetails : AppCompatActivity(), RatingBar.OnRatingBarChangeListener 
         setContentView(binding.root)
         val ratingBar = binding.ratingBar
         ratingBar.onRatingBarChangeListener = this
+        val bundle: Bundle? = intent.extras
+        dateUser = intent.getStringExtra("dateUser")
+        dateDetails = intent.getStringExtra("dateDetails")
+
+        if (dateUser != null && dateDetails != null) {
+            binding.userTv.text = dateUser
+            binding.detailsTv.text = dateDetails
+        }
 
     }
 
     override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
             Toast.makeText(this@ProfileDetails, "Given rating is: $p1", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQ_CODE && data != null) {
-            dateUser = data.getStringExtra("dateUser")
-//            dateDrawable = data.getStringExtra("dateDrawable")
-            dateDetails = data.getStringExtra("dateDetails")
-            Toast.makeText(this, "$dateUser + $dateDrawable + $dateDetails", Toast.LENGTH_LONG).show()
-        }
     }
 
     private fun populateResults() {
