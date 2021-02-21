@@ -13,7 +13,7 @@
         android:id="@+id/avatarIv"
         android:layout_width="200sp"
         android:layout_height="200sp"
-        android:src="@drawable/profile_pic" />
+        android:background="#CFCBCA"/>
 
     <Button
         android:id="@+id/takePhotoBtn"
