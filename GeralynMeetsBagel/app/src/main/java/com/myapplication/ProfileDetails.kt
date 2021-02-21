@@ -47,9 +47,14 @@ class ProfileDetails : AppCompatActivity(), RatingBar.OnRatingBarChangeListener 
         while(scan.hasNextLine()) {
             val line = scan.nextLine()
             val pieces = line.split("\t")
-            dateUser = pieces[0]
-            dateDetails = pieces[1]
-            userRating = pieces[2].toFloat()
+            // sift out the user.
+            if (pieces[0] == dateUser) {
+                dateUser = pieces[0]
+                dateDetails = pieces[1]
+                userRating = pieces[2].toFloat()
+            } else {
+                continue
+            }
         }
     }
 
@@ -65,7 +70,7 @@ class ProfileDetails : AppCompatActivity(), RatingBar.OnRatingBarChangeListener 
 
     private fun saveUserDetails() {
         Toast.makeText(this@ProfileDetails, "User rating when saved is $userRating", Toast.LENGTH_SHORT).show()
-        val output = PrintStream(openFileOutput("user_profiles.txt", MODE_PRIVATE))
+        val output = PrintStream(openFileOutput("user_profiles.txt", MODE_APPEND))
         output.println(dateUser + "\t" + dateDetails + "\t" + userRating + "\t")
         output.close()
     }
