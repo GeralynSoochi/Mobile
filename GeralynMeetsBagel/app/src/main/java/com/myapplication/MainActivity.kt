@@ -1,7 +1,6 @@
 package com.myapplication
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -33,20 +32,13 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data) // data is intent you are rececing from the child activity
 
         if (requestCode == REQ_CODE && resultCode == RESULT_OK && data != null) {
-//            val name = data.getStringExtra("name")
-//            val age = data.getStringExtra("age")
-//            val interest = data.getStringExtra("interest")
             readFile()
-            // might wanna check if variables are not null
-//            Toast.makeText(this, "$name $age $interest", Toast.LENGTH_SHORT).show()
         }
-        //        else {
-//            Toast.makeText(this, "You do not have a profile, please create one!", Toast.LENGTH_SHORT).show()
-//        }
     }
 
     private fun readFile() {
-        if (!fileExist("profile.txt")) {
+
+        if (!fileExist("profile.txt") || !fileExist("profile.png")) {
             return
         }
 
@@ -68,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         val file = baseContext.getFileStreamPath(fname)
         return file.exists()
     }
-
 
 
 }
