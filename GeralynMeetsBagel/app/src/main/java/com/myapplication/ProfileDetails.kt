@@ -19,10 +19,8 @@ class ProfileDetails : AppCompatActivity() {
         binding = ActivityProfileDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val ratingBar = binding.ratingBar
-        ratingBar.onRatingBarChangeListener = object : RatingBar.OnRatingBarChangeListener {
-            override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
-                Toast.makeText(this@ProfileDetails, "Given rating is: $p1", Toast.LENGTH_SHORT).show()
-            }
+        ratingBar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { p0, p1, p2 ->
+            Toast.makeText(this@ProfileDetails, "Given rating is: $p1", Toast.LENGTH_SHORT).show()
         }
     }
 
