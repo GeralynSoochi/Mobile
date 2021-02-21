@@ -2,13 +2,16 @@ package com.myapplication
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.myapplication.databinding.ActivityProfileBinding
-import java.io.PrintStream
+import java.io.*
 
 
 class Profile : AppCompatActivity() {
@@ -23,21 +26,17 @@ class Profile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
 
-    fun saveProfile(view: View) {
-        val name = binding.name.text.toString()
-        val age = binding.age.text.toString()
-        val interest = binding.interest.text.toString()
-
-        if (name != null && age != null && interest != null) {
-
-            val output = PrintStream(openFileOutput("profile.txt", MODE_PRIVATE))
-            output.println(name + "\t" + age + "\t" + interest + "\t")
-            output.close()
-
-            setResult(RESULT_OK, goBack)
-            finish()
+    private fun loadImageFromStorage() {
+        try {
+            val f = File(this.getFilesDir(), "profile.png")
+            val b = BitmapFactory.decodeStream(FileInputStream(f))
+            val avatarImageView = binding.avatarIv
+            avatarImageView.setImageBitmap(b)
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
         }
     }
 
@@ -76,14 +75,61 @@ class Profile : AppCompatActivity() {
         }
     }
 
-    // TODO: Save image to file.
-//    private fun saveImageToFile(imageView: ImageView) {
-//        var file = wrapper.getDir("images", Context.MODE_PRIVATE)
-//
-//        // Create a file to save the image
-//        file = File(file, "imageBitMap")
-//    }
+    private fun saveImageToStream(bitmap: Bitmap) {
+        var file = File(this.getFilesDir(), "profile.png")
 
+        try {
+            val stream: OutputStream = FileOutputStream(file)
+
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+
+            stream.flush()
+            stream.close()
+        } catch (e: IOException){
+            e.printStackTrace()
+        }
+        return
+    }
+
+    fun saveProfile(view: View) {
+        val name = binding.name.text.toString()
+        val age = binding.age.text.toString()
+        val interest = binding.interest.text.toString()
+
+        val avatarImageView = binding.avatarIv
+        val image = avatarImageView.drawable
+        if (image == null) {
+            Toast.makeText(this, "Please add a profile picture", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (name == "") {
+            Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (age == "") {
+            Toast.makeText(this, "Please enter your age", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (interest == "") {
+            Toast.makeText(this, "Please enter your interests", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (name != null && age != null && interest != null) {
+
+            val output = PrintStream(openFileOutput("profile.txt", MODE_PRIVATE))
+            output.println(name + "\t" + age + "\t" + interest + "\t")
+            output.close()
+            val bitmap = (avatarImageView.drawable as BitmapDrawable).bitmap
+            saveImageToStream(bitmap)
+
+            setResult(RESULT_OK, goBack)
+            finish()
+        }
+    }
 
     //    override fun onSaveInstanceState(outState: Bundle) {
 //        super.onSaveInstanceState(outState)
