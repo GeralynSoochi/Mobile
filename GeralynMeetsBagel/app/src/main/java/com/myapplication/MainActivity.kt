@@ -3,6 +3,7 @@ package com.myapplication
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.myapplication.databinding.ActivityMainBinding
 import java.util.*
@@ -48,6 +49,8 @@ class MainActivity : AppCompatActivity() {
             age = pieces[1]
             interest = pieces[2]
         }
+
+        Toast.makeText(this, "Welcome, $name", Toast.LENGTH_LONG).show()
 
         val profileIt = Intent(this, DatingProfiles::class.java)
         startActivity(profileIt)
