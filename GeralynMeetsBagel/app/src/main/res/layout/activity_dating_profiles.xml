@@ -132,4 +132,12 @@
 
     </LinearLayout>
 
+    <GridView
+        android:id="@+id/datingProfilesGv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:numColumns="2">
+
+    </GridView>
+
 </LinearLayout>

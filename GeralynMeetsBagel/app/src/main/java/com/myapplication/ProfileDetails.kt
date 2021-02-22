@@ -9,12 +9,11 @@ import java.util.*
 
 class ProfileDetails : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private lateinit var binding: ActivityProfileDetailsBinding
-    private val REQ_CODE = 3
     private lateinit var dateUser: String
     private lateinit var dateDetails: String
     private lateinit var ratingBar: RatingBar
     private lateinit var filename: String
-    private var userRating = 0.toFloat()
+    private var userRating = 0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
