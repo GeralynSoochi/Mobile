@@ -29,17 +29,6 @@ class Profile : AppCompatActivity() {
 
     }
 
-    private fun loadImageFromStorage() {
-        try {
-            val f = File(this.getFilesDir(), "profile.png")
-            val b = BitmapFactory.decodeStream(FileInputStream(f))
-            val avatarImageView = binding.avatarIv
-            avatarImageView.setImageBitmap(b)
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        }
-    }
-
     fun returnMain(view: View) {
         setResult(RESULT_CANCELED, goBack)
         finish()

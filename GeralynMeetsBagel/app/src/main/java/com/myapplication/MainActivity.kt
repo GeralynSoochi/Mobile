@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var name: String
     private lateinit var age: String
     private lateinit var interest: String
-    private lateinit var imageBitmapString: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +36,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun readFile() {
-
         if (!fileExist("profile.txt") || !fileExist("profile.png")) {
             return
         }
 
         val scan = Scanner(openFileInput("profile.txt"))
-
         while(scan.hasNextLine()) {
             val line = scan.nextLine()
             val pieces = line.split("\t")

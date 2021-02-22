@@ -1,4 +1,0 @@
-1|Jane|A very ambitious woman. Loves to work 9am-5pm.|date1.jpg
-2|Judy|Likes to smile alot. Favourite color is blue.|date2.jpg
-3|John|Clothing Model. Loves Instagram.|date3.jpg
-4|James|Geek, likes to program.|date4.jpeg
