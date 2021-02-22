@@ -19,7 +19,7 @@
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20sp"/>
+        android:layout_margin="20sp" />
 
     <TextView
         android:id="@+id/userTv"

@@ -4,23 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:background="#FFE7E7"
+    android:gravity="center"
     android:orientation="vertical"
-    android:gravity="center">
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/welcomeImage"
+        android:layout_width="match_parent"
+        android:layout_height="282dp"
+        app:srcCompat="@drawable/image" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to the Online Dating App!"
-        android:textSize="20sp"
-        android:layout_margin="20sp"/>
+        android:layout_margin="20sp"
+        android:text="Welcome to Geralyn Meets Bagel!"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/createBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Profile"
-        android:onClick="createProfile"/>
+        android:onClick="createProfile"
+        android:text="Create Profile" />
 
 </LinearLayout>
