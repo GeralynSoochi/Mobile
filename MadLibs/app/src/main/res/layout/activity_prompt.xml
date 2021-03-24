@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PromptActivity"
+    android:orientation="vertical"
+    android:gravity="center|top">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fill in the words to complete the story!"
+        android:textSize="20sp"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:id="@+id/wordsLeftTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of words left:"
+        android:textSize="18sp"
+        android:layout_margin="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/wordEt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Please enter a noun."/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ok"
+            android:layout_marginLeft="20dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
