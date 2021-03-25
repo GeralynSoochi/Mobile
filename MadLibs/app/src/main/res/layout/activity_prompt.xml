@@ -31,16 +31,17 @@
 
         <EditText
             android:id="@+id/wordEt"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:hint="Please enter a noun."/>
 
         <Button
+            android:id="@+id/okBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ok"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:onClick="submit"/>
 
     </LinearLayout>
 
