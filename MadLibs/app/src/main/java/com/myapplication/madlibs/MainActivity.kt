@@ -28,11 +28,11 @@ class MainActivity : AppCompatActivity() {
 //        val fileId = pickRandomFileId()
         val fileName = pickRandomFileName()
 
-        val intent = Intent(this, PromptActivity::class.java)
+        val it = Intent(this, PromptActivity::class.java)
 
 //        intent.putExtra("fileId", fileId)
-        intent.putExtra("fileName", fileName)
-        startActivity(intent)
+        it.putExtra("fileName", fileName)
+        startActivity(it)
     }
 
     // temp not ideal version for now
