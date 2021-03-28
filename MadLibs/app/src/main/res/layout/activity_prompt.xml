@@ -33,7 +33,7 @@
             android:id="@+id/wordEt"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="Please enter a noun."/>
+            android:hint="noun"/>
 
         <Button
             android:id="@+id/okBtn"
@@ -44,6 +44,13 @@
             android:onClick="submit"/>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/promptTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Please type a word" />
 
 
 </LinearLayout>

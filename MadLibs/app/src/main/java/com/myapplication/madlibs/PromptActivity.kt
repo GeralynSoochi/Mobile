@@ -37,11 +37,12 @@ class PromptActivity : AppCompatActivity() {
             Log.i("fileName", fileName)
 
             readResFile(fileName)
-            val numWordsLeft = wordTypes.size - currentWordTypeIndex + 1
+            val numWordsLeft = wordTypes.size
             binding.wordsLeftTv.text = "Number of words left: $numWordsLeft."
 
             val currentWordType = wordTypes[currentWordTypeIndex]
-            binding.wordEt.hint = "Please enter a $currentWordType."
+            binding.wordEt.hint = "$currentWordType"
+            binding.promptTV.text = "Please type a/an $currentWordType"
         }
     }
 
@@ -110,10 +111,11 @@ class PromptActivity : AppCompatActivity() {
 
             if (currentWordTypeIndex != wordTypes.size) {
                 val currentWordType = wordTypes[currentWordTypeIndex]
-                binding.wordEt.hint = "Please enter a $currentWordType."
+                binding.wordEt.hint = "$currentWordType"
+                binding.promptTV.text = "Please type a/an $currentWordType"
             }
 
-            val numWordsLeft = wordTypes.size - currentWordTypeIndex + 1
+            val numWordsLeft = wordTypes.size - currentWordTypeIndex
             binding.wordsLeftTv.text = "Number of words left: $numWordsLeft."
         } else {
             Toast.makeText(this, "Sorry, the word $userInput does not exist. Please try again.", Toast.LENGTH_SHORT).show()

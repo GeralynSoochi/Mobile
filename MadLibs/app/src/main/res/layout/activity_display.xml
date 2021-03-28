@@ -12,18 +12,18 @@
         android:layout_height="wrap_content"
         android:text="Your MadLibs Story!"
         android:textSize="30sp"
-        android:layout_margin="20dp" />
+        android:layout_margin="10dp" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_margin="20dp">
+        android:layout_height="300dp"
+        android:layout_margin="20dp"
+        android:layout_weight="10">
 
         <TextView
             android:id="@+id/story"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:text="story result"
             android:textSize="20sp" />
 
@@ -33,6 +33,7 @@
         android:id="@+id/makeStoryBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="Make another story"
         android:textAllCaps="false"
         android:onClick="makeStory"/>
