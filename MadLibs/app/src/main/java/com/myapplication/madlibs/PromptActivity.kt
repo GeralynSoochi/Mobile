@@ -2,6 +2,7 @@ package com.myapplication.madlibs
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,7 @@ class PromptActivity : AppCompatActivity() {
             fileName = extras.getString("fileName")!!
 
             readResFile(fileName)
+            binding.progressBar.max = wordTypes.size
             updateWordsLeft()
             updateHintAndText()
         }
@@ -33,6 +35,7 @@ class PromptActivity : AppCompatActivity() {
     private fun updateWordsLeft() {
         val numWordsLeft = wordTypes.size - currentWordTypeIndex
         binding.wordsLeftTv.text = "Number of words left: $numWordsLeft."
+        binding.progressBar.progress = currentWordTypeIndex
     }
 
     private fun updateHintAndText() {
@@ -56,8 +59,7 @@ class PromptActivity : AppCompatActivity() {
                     val firstChar = word.substring(0, 1)
                     if (firstChar == "<") {
                         // remove the "<" and ">" from the word
-                        val wordType = word.substring(1, word.length-1)
-
+                        val wordType = word.substring(1, word.length-1).toLowerCase()
                         // store in wordTypes array
                         wordTypes.add(wordType)
                     }

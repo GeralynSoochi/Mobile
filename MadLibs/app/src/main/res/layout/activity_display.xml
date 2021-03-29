@@ -3,16 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DisplayActivity"
+    android:background="#E3F2FD"
+    android:gravity="center|top"
     android:orientation="vertical"
-    android:gravity="center|top">
+    tools:context=".DisplayActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="Your MadLibs Story!"
-        android:textSize="30sp"
-        android:layout_margin="10dp" />
+        android:textSize="30sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -34,8 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:onClick="makeStory"
         android:text="Make another story"
-        android:textAllCaps="false"
-        android:onClick="makeStory"/>
+        android:textAllCaps="false" />
 
 </LinearLayout>

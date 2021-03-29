@@ -4,33 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:background="#E3F2FD"
+    android:gravity="center"
     android:orientation="vertical"
-    android:gravity="center">
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/madlibs_logo"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        app:srcCompat="@drawable/madlibs_logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/game_description"
         android:layout_margin="20dp"
+        android:text="@string/game_description"
         android:textColor="@color/black"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="Let's get started!"
         android:backgroundTint="@color/white"
-        android:textColor="@color/black"
-        android:onClick="startGame" />
+        android:onClick="startGame"
+        android:text="Let's get started!"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
 
 </LinearLayout>
