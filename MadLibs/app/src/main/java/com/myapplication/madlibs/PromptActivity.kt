@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.myapplication.madlibs.databinding.ActivityPromptBinding
-import java.io.PrintStream
 import java.util.*
 
 class PromptActivity : AppCompatActivity() {
@@ -26,13 +25,20 @@ class PromptActivity : AppCompatActivity() {
             fileName = extras.getString("fileName")!!
 
             readResFile(fileName)
-            val numWordsLeft = wordTypes.size
-            binding.wordsLeftTv.text = "Number of words left: $numWordsLeft."
-
-            val currentWordType = wordTypes[currentWordTypeIndex]
-            binding.wordEt.hint = "$currentWordType"
-            binding.promptTV.text = "Please type a/an $currentWordType"
+            updateWordsLeft()
+            updateHintAndText()
         }
+    }
+
+    private fun updateWordsLeft() {
+        val numWordsLeft = wordTypes.size - currentWordTypeIndex
+        binding.wordsLeftTv.text = "Number of words left: $numWordsLeft."
+    }
+
+    private fun updateHintAndText() {
+        val currentWordType = wordTypes[currentWordTypeIndex]
+        binding.wordEt.hint = "$currentWordType"
+        binding.promptTV.text = "Please type a/an $currentWordType"
     }
 
     private fun readResFile(fileName: String) {
@@ -72,13 +78,10 @@ class PromptActivity : AppCompatActivity() {
             currentWordTypeIndex++
 
             if (currentWordTypeIndex != wordTypes.size) {
-                val currentWordType = wordTypes[currentWordTypeIndex]
-                binding.wordEt.hint = "$currentWordType"
-                binding.promptTV.text = "Please type a/an $currentWordType"
+                updateHintAndText()
             }
 
-            val numWordsLeft = wordTypes.size - currentWordTypeIndex
-            binding.wordsLeftTv.text = "Number of words left: $numWordsLeft."
+            updateWordsLeft()
         } else {
             Toast.makeText(this, "Sorry, the word $userInput does not exist. Please try again.", Toast.LENGTH_SHORT).show()
             binding.wordEt.text.clear()
