@@ -1,12 +1,7 @@
 package com.myapplication.madlibs
 
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,9 +11,7 @@ import java.util.*
 
 class PromptActivity : AppCompatActivity() {
     private lateinit var binding:ActivityPromptBinding
-//    private var fileId = 0
     private var fileName = ""
-//    private var wordType = ""
     private var wordTypes = ArrayList<String>()
     private var userInputs = ArrayList<String>()
     private var currentWordTypeIndex = 0
@@ -30,11 +23,7 @@ class PromptActivity : AppCompatActivity() {
 
         val extras = intent.extras
         if (extras != null) {
-//            fileId = extras.getInt("fileId")
-//            Log.i("fileId", "$fileId")
-
             fileName = extras.getString("fileName")!!
-            Log.i("fileName", fileName)
 
             readResFile(fileName)
             val numWordsLeft = wordTypes.size
@@ -52,7 +41,6 @@ class PromptActivity : AppCompatActivity() {
         val scanner = Scanner(resources.openRawResource(fileId))
         while(scanner.hasNextLine()) {
             val line = scanner.nextLine()
-            Log.i("line", line)
 
             // For each line, need split the words and find out the type of word in placeholder
             val words = line.split(" ") // split by white space
@@ -63,7 +51,6 @@ class PromptActivity : AppCompatActivity() {
                     if (firstChar == "<") {
                         // remove the "<" and ">" from the word
                         val wordType = word.substring(1, word.length-1)
-                        Log.i("wordType", wordType)
 
                         // store in wordTypes array
                         wordTypes.add(wordType)
@@ -73,34 +60,9 @@ class PromptActivity : AppCompatActivity() {
         }
     }
 
-    private fun fileExist(fname: String?): Boolean {
-        val file = baseContext.getFileStreamPath(fname)
-        return file.exists()
-    }
-
-    private fun readFile(fileName: String) {
-        if (!fileExist(fileName)) {
-            return
-        }
-
-        val scan = Scanner(openFileInput(fileName))
-
-        while (scan.hasNextLine()) {
-            val line = scan.nextLine()
-            val pieces = line.split("\t")
-        }
-    }
-
-    private fun writeFile(fileName: String) {
-        val output = PrintStream(openFileOutput(fileName, MODE_PRIVATE))
-        output.println()
-        output.close()
-    }
-
     // store userInput if exist in dictionary and not more than wordTypes size
     fun submit(view: View) {
         val userInput = binding.wordEt.text.toString()
-        Log.i("userInput", userInput)
 
         if (existInDict(userInput) && userInputs.size < wordTypes.size) {
             Toast.makeText(this, "Great! Keep going!", Toast.LENGTH_SHORT).show()
@@ -134,7 +96,6 @@ class PromptActivity : AppCompatActivity() {
         var count = 0
         while (scan.hasNextLine()) {
             val line = scan.nextLine()
-            Log.i("dict line", "<$line>")
             if (line == userInput) {
                 count++
             }
@@ -152,7 +113,6 @@ class PromptActivity : AppCompatActivity() {
         var currentUserInputIndex = 0
         while(scanner.hasNextLine()) {
             val line = scanner.nextLine()
-            Log.i("constructStory line", line)
 
             val words = line.split(" ") // split by white space
             for (word in words) {
@@ -178,7 +138,6 @@ class PromptActivity : AppCompatActivity() {
         }
 
         result = result.substring(0, result.length - 1) // remove last whitespace
-        Log.i("result", result)
 
         Toast.makeText(this, "Your story has been generated!", Toast.LENGTH_LONG).show()
         //pass this result into intent
