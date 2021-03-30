@@ -2,7 +2,6 @@ package com.myapplication.madlibs
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -44,7 +43,6 @@ class PromptActivity : AppCompatActivity() {
             // For each line, need split the words and find out the type of word in placeholder
             val words = line.split(" ") // split by white space
             for (word in words) {
-                // need make sure word is not some blank space
                 if (word.length >= 1) {
                     val firstChar = word.substring(0, 1)
                     if (firstChar == "<") {
@@ -81,7 +79,13 @@ class PromptActivity : AppCompatActivity() {
 
     // store userInput if exist in dictionary and not more than wordTypes size
     fun submit(view: View) {
-        val userInput = binding.wordEt.text.toString()
+        val userInput = binding.wordEt.text.toString().trim()
+
+        if (userInput == "") {
+            Toast.makeText(this, "Please input a word!", Toast.LENGTH_SHORT).show()
+            binding.wordEt.text.clear()
+            return
+        }
 
         if (userInput in allowedWords && userInputs.size < wordTypes.size) {
             Toast.makeText(this, "Great! Keep going!", Toast.LENGTH_SHORT).show()
@@ -96,7 +100,7 @@ class PromptActivity : AppCompatActivity() {
 
             updateWordsLeft()
         } else {
-            Toast.makeText(this, "Sorry, the word $userInput does not exist. Please try again.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Sorry, the word \"$userInput\" does not exist. Please try again.", Toast.LENGTH_SHORT).show()
             binding.wordEt.text.clear()
         }
 
@@ -118,7 +122,6 @@ class PromptActivity : AppCompatActivity() {
 
             val words = line.split(" ") // split by white space
             for (word in words) {
-                // need make sure word is not some blank space
                 if (word.length >= 1) {
                     // detect placeholder, replace with userInput
                     val firstChar = word.substring(0, 1)

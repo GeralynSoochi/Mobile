@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
 
     // picks a random file id and passes it to next PromptActivity
     fun startGame(view: View) {
-//        val fileId = pickRandomFileId()
         val fileName = pickRandomFileName()
 
         val it = Intent(this, PromptActivity::class.java)
@@ -29,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(it)
     }
 
-    // temp not ideal version for now
     private fun pickRandomFileName() : String {
         val fileNames = ArrayList<String>()
 
