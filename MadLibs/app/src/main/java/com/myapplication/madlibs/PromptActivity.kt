@@ -60,7 +60,7 @@ class PromptActivity : AppCompatActivity() {
         val scan = Scanner(resources.openRawResource(R.raw.dict))
 
         while (scan.hasNextLine()) {
-            val line = scan.nextLine()
+            val line = scan.nextLine().toLowerCase()
             allowedWords.add(line)
         }
     }
@@ -87,7 +87,7 @@ class PromptActivity : AppCompatActivity() {
             return
         }
 
-        if (userInput in allowedWords && userInputs.size < wordTypes.size) {
+        if (userInput.toLowerCase() in allowedWords && userInputs.size < wordTypes.size) {
             Toast.makeText(this, "Great! Keep going!", Toast.LENGTH_SHORT).show()
             userInputs.add(userInput)
             binding.wordEt.text.clear()
