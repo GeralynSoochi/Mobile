@@ -133,11 +133,6 @@ class PromptActivity : AppCompatActivity() {
                         result += "$word "
                     }
                 }
-
-                // if encounter full stop or comma, remove whitespace before it.
-                if (word == "." || word == ",") {
-                    result = result.substring(0, result.length-1)
-                }
             }
             result += "\n"
         }
