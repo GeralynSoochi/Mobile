@@ -15,6 +15,7 @@ class PromptActivity : AppCompatActivity() {
     private var wordTypes = ArrayList<String>()
     private var userInputs = ArrayList<String>()
     private var currentWordTypeIndex = 0
+    private var allowedWords = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,22 +27,11 @@ class PromptActivity : AppCompatActivity() {
             fileName = extras.getString("fileName")!!
 
             readResFile(fileName)
+            readDictFile()
             binding.progressBar.max = wordTypes.size
             updateWordsLeft()
             updateHintAndText()
         }
-    }
-
-    private fun updateWordsLeft() {
-        val numWordsLeft = wordTypes.size - currentWordTypeIndex
-        binding.wordsLeftTv.text = "Number of words left: $numWordsLeft."
-        binding.progressBar.progress = currentWordTypeIndex
-    }
-
-    private fun updateHintAndText() {
-        val currentWordType = wordTypes[currentWordTypeIndex]
-        binding.wordEt.hint = "$currentWordType"
-        binding.promptTV.text = "Please type a/an $currentWordType"
     }
 
     private fun readResFile(fileName: String) {
@@ -68,11 +58,32 @@ class PromptActivity : AppCompatActivity() {
         }
     }
 
+    private fun readDictFile() {
+        val scan = Scanner(resources.openRawResource(R.raw.dict))
+
+        while (scan.hasNextLine()) {
+            val line = scan.nextLine()
+            allowedWords.add(line)
+        }
+    }
+
+    private fun updateWordsLeft() {
+        val numWordsLeft = wordTypes.size - currentWordTypeIndex
+        binding.wordsLeftTv.text = "Number of words left: $numWordsLeft."
+        binding.progressBar.progress = currentWordTypeIndex
+    }
+
+    private fun updateHintAndText() {
+        val currentWordType = wordTypes[currentWordTypeIndex]
+        binding.wordEt.hint = "$currentWordType"
+        binding.promptTV.text = "Please type a/an $currentWordType"
+    }
+
     // store userInput if exist in dictionary and not more than wordTypes size
     fun submit(view: View) {
         val userInput = binding.wordEt.text.toString()
 
-        if (existInDict(userInput) && userInputs.size < wordTypes.size) {
+        if (userInput in allowedWords && userInputs.size < wordTypes.size) {
             Toast.makeText(this, "Great! Keep going!", Toast.LENGTH_SHORT).show()
             userInputs.add(userInput)
             binding.wordEt.text.clear()
@@ -93,20 +104,6 @@ class PromptActivity : AppCompatActivity() {
         if (userInputs.size == wordTypes.size) {
             constructStory(fileName)
         }
-    }
-
-    private fun existInDict(userInput : String) : Boolean {
-        val scan = Scanner(resources.openRawResource(R.raw.dict))
-
-        var count = 0
-        while (scan.hasNextLine()) {
-            val line = scan.nextLine()
-            if (line == userInput) {
-                count++
-            }
-        }
-
-        return count != 0
     }
 
     private fun constructStory(fileName : String) {
